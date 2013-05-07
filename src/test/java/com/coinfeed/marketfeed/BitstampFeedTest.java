@@ -24,12 +24,12 @@ public class BitstampFeedTest {
 		
 		BitstampFeed bitstampFeed = new BitstampFeed(new FeedListener() {
 			@Override
-			public void onFeedFetch() {
+			public void onError(String error) {
 				countDownLatch.countDown(); 
 			}
-			
+
 			@Override
-			public void onError(String error) {
+			public void onFeedFetch(TickerModel tickerModel) {
 				countDownLatch.countDown(); 
 			}
 		});
