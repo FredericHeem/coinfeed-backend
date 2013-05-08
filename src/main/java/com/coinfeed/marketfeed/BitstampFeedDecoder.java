@@ -8,6 +8,7 @@ public class BitstampFeedDecoder {
 		TickerModel tickerModel = new TickerModel();
 		JSONObject jsonMessage = (JSONObject) JSONValue.parse(message);
 		tickerModel.setBid(jsonMessage.get("bid").toString());
+		tickerModel.setAsk(jsonMessage.get("ask").toString());
 		return tickerModel;
 	}
 }

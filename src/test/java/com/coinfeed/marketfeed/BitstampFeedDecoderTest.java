@@ -23,5 +23,6 @@ public class BitstampFeedDecoderTest {
 	{
 		TickerModel tickerModel = BitstampFeedDecoder.decode(payloadOk);
 		Assert.assertEquals(tickerModel.getBid(), "107.30");
+		Assert.assertEquals(tickerModel.getAsk(), "107.80");
 	}
 }
