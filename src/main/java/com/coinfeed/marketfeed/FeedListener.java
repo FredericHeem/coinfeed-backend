@@ -1,6 +1,6 @@
 package com.coinfeed.marketfeed;
 
 public interface FeedListener {
-	public void onFeedFetch(TickerModel tickerModel);
-	public void onError(String error);
+	void onFeedFetch(TickerModel tickerModel);
+	void onError(String error);
 }

@@ -10,10 +10,10 @@ public class MarketFeedApp {
 	
 	public static void main(String[] args) {
 		MarketFeedApp app = new MarketFeedApp();
-		app.run(args);
+		app.run();
 	}
 
-	private void run(String[] args) {
+	private void run() {
 		log.info("run");
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
