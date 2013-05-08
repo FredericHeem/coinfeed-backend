@@ -11,27 +11,19 @@ public class MarketFeedApp {
 	public static void main(String[] args) {
 		MarketFeedApp app = new MarketFeedApp();
 		app.run(args);
-
 	}
 
 	private void run(String[] args) {
 		log.info("run");
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
-
-		FeedFetcher feedFetcher = new FeedFetcher(new FeedListener() {
-			@Override
-			public void onError(String error) {
-				log.error(error);
-			}
-
-			@Override
-			public void onFeedFetch(TickerModel tickerModel) {
-				log.info(tickerModel.toString());
-			}
-		});
-
+		
 		try {
-			feedFetcher.start();
+			FeedManager feedManager = new FeedManager();
+			if(feedManager.initialize() == false){
+				log.error("feedManager.initialize ko");
+				return;
+			}
+			feedManager.startFetch();
 			countDownLatch.await();
 		} catch (Exception exception) {
 			log.error(exception.getMessage());
