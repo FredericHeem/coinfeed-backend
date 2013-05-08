@@ -3,6 +3,7 @@ package com.coinfeed.marketfeed;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -76,14 +77,12 @@ public class FeedStoreTest {
 		FeedStore store = new FeedStore(config);
 		try {
 			Assert.assertTrue(store.authenticate());
-			TickerModel tickerModel = new TickerModel();
-			tickerModel.setMarketName("Bitstamp");
-			tickerModel.setBid("110");
-			tickerModel.setAsk("111");
+			TickerModel tickerModel = TickerModel.create("Bitstamp", "110", "111");
 			store.write(tickerModel);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.assertTrue(false);
 		}
 	}
+	
 }

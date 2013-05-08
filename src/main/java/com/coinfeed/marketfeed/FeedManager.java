@@ -15,6 +15,16 @@ public class FeedManager implements FeedListener {
 		this.feedStore = new FeedStore(this.feedStoreConfig);
 	}
 
+	public boolean initialize(){
+		boolean authenticated = false;
+		try {
+			authenticated = this.feedStore.authenticate();
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return authenticated;
+	}
+	
 	public void startFetch(){
 		log.debug("startFetch");
 		feedFetcher.start();

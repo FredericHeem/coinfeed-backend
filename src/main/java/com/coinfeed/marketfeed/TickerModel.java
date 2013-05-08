@@ -1,9 +1,24 @@
 package com.coinfeed.marketfeed;
 
+import java.util.Date;
+
 public class TickerModel {
 	private String marketName;
 	private String bid;
 	private String ask;
+	private Date date;
+	
+	public static TickerModel create(
+			String marketName, 
+			String bid, 
+			String ask){
+		TickerModel tickerModel = new TickerModel();
+		tickerModel.setMarketName(marketName);
+		tickerModel.setBid(bid);
+		tickerModel.setAsk(ask);
+		tickerModel.setDate(new Date());
+		return tickerModel;
+	}
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
@@ -35,5 +50,13 @@ public class TickerModel {
 
 	public String getMarketName() {
 		return marketName;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Date getDate() {
+		return date;
 	}	
 }

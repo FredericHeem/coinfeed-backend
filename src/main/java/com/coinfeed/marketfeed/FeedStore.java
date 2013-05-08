@@ -61,7 +61,8 @@ public class FeedStore {
 	}
 
 	private BasicDBObject createBasicDBObject(TickerModel tickerModel){
-		BasicDBObject basicDBObject = new BasicDBObject("bid", tickerModel.getBid()).
+		BasicDBObject basicDBObject = new BasicDBObject("date", tickerModel.getDate()).
+		    append("bid", tickerModel.getBid()).
             append("ask", tickerModel.getAsk());
 		return basicDBObject;
 	}
