@@ -3,6 +3,7 @@ package com.coinfeed.marketfeed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.coinfeed.marketfeed.statemachine.FeedFetcherContext;
 import com.stateforge.statemachine.listener.ObserverConsole;
 
 public class FeedFetcher  implements FeedListener {
