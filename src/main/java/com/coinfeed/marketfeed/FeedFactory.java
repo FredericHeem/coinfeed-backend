@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 
 public class FeedFactory {
 	private static final Logger log = LoggerFactory.getLogger(FeedFactory.class);
-	public static String BITSTAMP_FEED = "Bitstamp";
-	public static String MTGOX_FEED = "MtGox";
+	public static final String BITSTAMP_FEED = "Bitstamp";
+	public static final String MTGOX_FEED = "MtGox";
 	
 	public static FeedBase createFeed(String type, FeedListener feedListener){
 		FeedBase feed = null;
