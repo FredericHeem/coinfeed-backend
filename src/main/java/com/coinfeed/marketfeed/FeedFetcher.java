@@ -14,9 +14,9 @@ public class FeedFetcher  implements FeedListener {
 	private int errorCount;
 	private int fetchCount;
 	
-	public FeedFetcher(FeedListener feedListener){
+	public FeedFetcher(String feedProvider, FeedListener feedListener){
 		this.feedListener = feedListener;
-		this.feed = new BitstampFeed(this);
+		this.feed = FeedFactory.createFeed(feedProvider, this);
 		this.context = new FeedFetcherContext(feed);
 		this.context.setObserver(ObserverConsole.getInstance());
 	}

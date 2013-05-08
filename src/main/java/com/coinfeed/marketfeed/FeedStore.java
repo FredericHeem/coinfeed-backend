@@ -49,15 +49,19 @@ public class FeedStore {
 	}
 	
 	public void write(TickerModel tickerModel) {
-		log.debug("write " + tickerModel.toString());
-		String marketName = tickerModel.getMarketName();
-		if(marketName.isEmpty()){
-			throw new IllegalArgumentException("empty market name");
+		try {
+			log.debug("write " + tickerModel.toString());
+			String marketName = tickerModel.getMarketName();
+			if(marketName.isEmpty()){
+				throw new IllegalArgumentException("empty market name");
+			}
+			
+			DBCollection collection = db.getCollection(marketName);
+			log.debug("write #collection " + collection.count());
+			collection.insert(createBasicDBObject(tickerModel));
+		} catch (Exception e) {
+			log.error("write error: " + e.getMessage());
 		}
-		
-		DBCollection collection = db.getCollection(marketName);
-		log.debug("write #collection " + collection.count());
-		collection.insert(createBasicDBObject(tickerModel));
 	}
 
 	private BasicDBObject createBasicDBObject(TickerModel tickerModel){

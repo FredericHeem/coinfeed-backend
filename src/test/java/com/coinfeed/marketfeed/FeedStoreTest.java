@@ -1,11 +1,5 @@
 package com.coinfeed.marketfeed;
 
-
-import java.io.IOException;
-import java.net.UnknownHostException;
-import java.util.Date;
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

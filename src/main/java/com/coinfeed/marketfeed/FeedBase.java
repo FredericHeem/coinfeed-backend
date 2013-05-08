@@ -11,14 +11,13 @@ import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.Response;
 
 public abstract class FeedBase {
-	private static final Logger log = LoggerFactory.getLogger(BitstampFeed.class);
+	private static final Logger log = LoggerFactory.getLogger(FeedBase.class);
 	protected AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
 	protected FeedListener feedListener;
 	protected Future<String> _future;
 	protected String query;
 	private String marketName;
-	
-	protected abstract void onFeedReceived(String message);
+	private IFeedDecoder decoder;
 	
 	public void fetch() {
 		fetch(query);		
@@ -40,13 +39,32 @@ public abstract class FeedBase {
 
 						@Override
 						public void onThrowable(Throwable throwable) {
-							log.error(throwable.getMessage());
-							getFeedListener().onError(throwable.getMessage());
+							log.error("onThrowable: " + throwable.getMessage());
+							if(throwable.getMessage() != null){
+								getFeedListener().onError(throwable.getMessage());
+							}
 						}
 					});
 		} catch (IOException exception) {
 			log.error(exception.getMessage());
 			getFeedListener().onError(exception.getMessage());
+		}
+	}
+	
+	protected void onFeedReceived(String message) {
+		log.debug("onFeedReceived:" + message);
+		TickerModel tickerModel;
+		try {
+			tickerModel = getDecoder().decode(message);
+			log.debug("onFeedReceived: market name " + getMarketName());
+			tickerModel.setMarketName(getMarketName());
+			getFeedListener().onFeedFetch(tickerModel);
+		} catch (DecoderException e) {
+			log.error("onFeedReceived: decoder error " + message);
+			getFeedListener().onError(e.getMessage());
+		} catch (Exception e) {
+			log.error("onFeedReceived: error " + message);
+			getFeedListener().onError(e.getMessage());
 		}
 	}
 	
@@ -74,5 +92,13 @@ public abstract class FeedBase {
 
 	public String getMarketName() {
 		return marketName;
+	}
+
+	public void setDecoder(IFeedDecoder decoder) {
+		this.decoder = decoder;
+	}
+
+	public IFeedDecoder getDecoder() {
+		return decoder;
 	}
 }

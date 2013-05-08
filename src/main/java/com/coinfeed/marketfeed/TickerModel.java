@@ -8,6 +8,10 @@ public class TickerModel {
 	private String ask;
 	private Date date;
 	
+	public TickerModel(){
+		this.date = new Date();
+	}
+	
 	public static TickerModel create(
 			String marketName, 
 			String bid, 
@@ -24,7 +28,8 @@ public class TickerModel {
 		StringBuilder builder = new StringBuilder();
 		builder.append(getMarketName()).append(": ");
 		builder.append("bid: ").append(getBid()).append(", ");
-		builder.append("ask: ").append(getAsk());
+		builder.append("ask: ").append(getAsk()).append(", ");
+		builder.append("date: ").append(getDate().toString());
 		return builder.toString();
 	}
 	

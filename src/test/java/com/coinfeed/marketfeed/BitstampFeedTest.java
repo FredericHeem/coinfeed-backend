@@ -4,11 +4,14 @@ package com.coinfeed.marketfeed;
 import java.util.concurrent.CountDownLatch;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BitstampFeedTest {
-
+	private static final Logger log = LoggerFactory.getLogger(BitstampFeedTest.class);
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -25,6 +28,8 @@ public class BitstampFeedTest {
 		BitstampFeed bitstampFeed = new BitstampFeed(new FeedListener() {
 			@Override
 			public void onError(String error) {
+				log.error("onError " + error);
+				Assert.assertTrue(false);
 				countDownLatch.countDown(); 
 			}
 
