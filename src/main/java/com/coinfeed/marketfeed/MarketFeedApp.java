@@ -1,18 +1,40 @@
 package com.coinfeed.marketfeed;
 
-public class MarketFeedApp {
+import java.util.concurrent.CountDownLatch;
 
-	/**
-	 * @param args
-	 */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class MarketFeedApp {
+	private static final Logger log = LoggerFactory.getLogger(MarketFeedApp.class);
+	
 	public static void main(String[] args) {
-		System.out.println("MarketFeedApp");
 		MarketFeedApp app = new MarketFeedApp();
 		app.run(args);
-		
+
 	}
 
-	private void run(String[] args){
-		System.out.println("MarketFeedApp run");
+	private void run(String[] args) {
+		log.info("run");
+		final CountDownLatch countDownLatch = new CountDownLatch(1);
+
+		FeedFetcher feedFetcher = new FeedFetcher(new FeedListener() {
+			@Override
+			public void onError(String error) {
+				log.error(error);
+			}
+
+			@Override
+			public void onFeedFetch(TickerModel tickerModel) {
+				log.info(tickerModel.toString());
+			}
+		});
+
+		try {
+			feedFetcher.start();
+			countDownLatch.await();
+		} catch (Exception exception) {
+			log.error(exception.getMessage());
+		}
 	}
 }

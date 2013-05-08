@@ -22,7 +22,7 @@ public class FeedFetcherTest {
 	@Test
 	public void testFetch()
 	{
-		final CountDownLatch countDownLatch = new CountDownLatch(4);
+		final CountDownLatch countDownLatch = new CountDownLatch(2);
 		
 		FeedFetcher feedFetcher = new FeedFetcher(new FeedListener() {
 			@Override

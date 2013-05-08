@@ -5,6 +5,13 @@ public class TickerModel {
 	private String bid;
 	private String ask;
 	
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("bid: ").append(getBid()).append(", ");
+		builder.append("ask: ").append(getAsk());
+		return builder.toString();
+	}
+	
 	public String getAsk() {
 		return ask;
 	}
