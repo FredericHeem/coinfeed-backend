@@ -16,6 +16,7 @@ public abstract class FeedBase {
 	protected FeedListener feedListener;
 	protected Future<String> _future;
 	protected String query;
+	private String marketName;
 	
 	protected abstract void onFeedReceived(String message);
 	
@@ -65,5 +66,13 @@ public abstract class FeedBase {
 	}
 	public void setQuery(String query) {
 		this.query = query;
+	}
+
+	public void setMarketName(String marketName) {
+		this.marketName = marketName;
+	}
+
+	public String getMarketName() {
+		return marketName;
 	}
 }

@@ -10,11 +10,13 @@ public class BitstampFeed extends FeedBase implements IFeed {
 	public BitstampFeed(FeedListener feedListener) {
 		super(feedListener);
 		setQuery(QUERY_BITSTAMP);
+		setMarketName("Bitstamp");
 	}
 
 	protected void onFeedReceived(String message) {
 		log.debug("onFeedReceived:" + message);
 		TickerModel tickerModel = BitstampFeedDecoder.decode(message);
+		tickerModel.setMarketName(getMarketName());
 		getFeedListener().onFeedFetch(tickerModel);
 	}
 }
