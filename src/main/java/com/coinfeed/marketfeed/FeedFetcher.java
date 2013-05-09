@@ -12,6 +12,7 @@ public class FeedFetcher  implements FeedListener {
 	private FeedListener feedListener;
 	private int errorCount;
 	private int fetchCount;
+	private TickerModel tickerModelLast;
 	
 	public FeedFetcher(FeedBase feed, FeedListener feedListener){
 		this.feedListener = feedListener;
@@ -26,9 +27,21 @@ public class FeedFetcher  implements FeedListener {
 	@Override
 	public void onFeedFetch(TickerModel tickerModel) {
 		this.fetchCount += 1;
-        log.debug("#fetch " + getFetchCount());
+		log.debug("onFeedFetch:      " + tickerModel.toString() + ", #fetch " + getFetchCount());
 		this.context.evFetched();
-		this.feedListener.onFeedFetch(tickerModel);
+		
+		if(this.tickerModelLast != null){
+			log.debug("onFeedFetch: last " + tickerModelLast.toString());
+		}
+		if((this.tickerModelLast != null) && 
+				(this.tickerModelLast.getBid().compareTo(tickerModel.getBid()) == 0) &&
+				(this.tickerModelLast.getAsk().compareTo(tickerModel.getAsk()) == 0)){
+				log.debug("onFeedFetch same ticker");
+		} else {
+			this.feedListener.onFeedFetch(tickerModel);
+		}
+		
+		this.tickerModelLast = tickerModel;
 	}
 
 	@Override

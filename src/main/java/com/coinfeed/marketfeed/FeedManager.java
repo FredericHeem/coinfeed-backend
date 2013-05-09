@@ -11,6 +11,7 @@ public class FeedManager implements FeedListener {
 	private FeedStore feedStore = new FeedStore();
 	private Config config = new Config();
 	
+	
 	public FeedManager(){
 	}
 
@@ -48,7 +49,7 @@ public class FeedManager implements FeedListener {
 	
 	@Override
 	public void onFeedFetch(TickerModel tickerModel) {
-		log.debug("onFeedFetch: " + tickerModel.toString());
+		log.debug("onFeedFetch:      " + tickerModel.toString());
 		this.feedStore.write(tickerModel);
 	}
 
