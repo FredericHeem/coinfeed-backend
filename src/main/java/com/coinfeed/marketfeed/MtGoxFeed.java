@@ -8,7 +8,6 @@ public class MtGoxFeed extends FeedBase implements IFeed {
 	public MtGoxFeed(FeedFetcherConfig config) {
 		super(config);
 		setQuery(QUERY_MTGOX);
-		setMarketName(DRIVER_NAME);
 		setDecoder(new MtGoxFeedDecoder());
 	}
 }

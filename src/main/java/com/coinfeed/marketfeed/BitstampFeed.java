@@ -7,7 +7,6 @@ public class BitstampFeed extends FeedBase implements IFeed {
 	public BitstampFeed(FeedFetcherConfig config) {
 		super(config);
 		setQuery(QUERY_BITSTAMP);
-		setMarketName(DRIVER_NAME);
 		setDecoder(new BitstampFeedDecoder());
 	}
 }
