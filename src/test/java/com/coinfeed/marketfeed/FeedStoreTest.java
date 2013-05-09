@@ -19,12 +19,13 @@ public class FeedStoreTest {
 	@Test
 	public void testURI(){
 		Assert.assertEquals(config.toString(),
-				"coinfeed:coinfeed1234@ds061797.mongolab.com:61797/bitcointickers");
+				"coinfeed:coinfeed1234@ds059947.mongolab.com:59947/bitcointickers-dev");
 	}
 		
 	@Test
 	public void testAuthenticate(){
 		FeedStore store = new FeedStore(config);
+		store.setConfig(config);
 		try {
 			Assert.assertTrue(store.authenticate());
 		} catch (Exception e) {
@@ -67,7 +68,6 @@ public class FeedStoreTest {
 	
 	@Test
 	public void testWrite(){
-		FeedStoreConfig config = new FeedStoreConfig();
 		FeedStore store = new FeedStore(config);
 		try {
 			Assert.assertTrue(store.authenticate());

@@ -14,11 +14,15 @@ import com.mongodb.MongoClient;
 public class FeedStore {
 	private static final Logger log = LoggerFactory.getLogger(FeedStore.class);
 	private MongoClient mongoClient;
-	private FeedStoreConfig config;
+	private FeedStoreConfig config = new FeedStoreConfig();
 	private DB db;
 	private boolean authenticated;
 	
+	public FeedStore(){
+	}
+	
 	public FeedStore(FeedStoreConfig config){
+		super();
 		this.config = config;
 	}
 	
@@ -91,5 +95,13 @@ public class FeedStore {
 
 	public boolean isAuthenticated() {
 		return authenticated;
+	}
+	
+	public FeedStoreConfig getConfig() {
+		return config;
+	}
+
+	public void setConfig(FeedStoreConfig config) {
+		this.config = config;
 	}
 }

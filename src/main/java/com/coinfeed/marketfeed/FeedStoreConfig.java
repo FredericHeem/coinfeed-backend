@@ -1,11 +1,11 @@
 package com.coinfeed.marketfeed;
 
 public class FeedStoreConfig {
-	private String hostname = "ds061797.mongolab.com";
-	private int port = 61797;
+	private String hostname = "ds059947.mongolab.com";
+	private int port = 59947;
 	private String username = "coinfeed";
 	private String password = "coinfeed1234";
-	private String dbName = "bitcointickers";
+	private String dbName = "bitcointickers-dev";
 	
 	public String toString(){
 		StringBuilder builder = new StringBuilder();

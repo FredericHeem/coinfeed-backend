@@ -18,6 +18,7 @@ public abstract class FeedBase {
 	protected String query;
 	private String marketName;
 	private IFeedDecoder decoder;
+	private int pollingPeriod = 10000;
 	
 	public void fetch() {
 		fetch(query);		
@@ -100,5 +101,13 @@ public abstract class FeedBase {
 
 	public IFeedDecoder getDecoder() {
 		return decoder;
+	}
+
+	public void setPollingPeriod(int pollingPeriod) {
+		this.pollingPeriod = pollingPeriod;
+	}
+
+	public int getPollingPeriod() {
+		return pollingPeriod;
 	}
 }

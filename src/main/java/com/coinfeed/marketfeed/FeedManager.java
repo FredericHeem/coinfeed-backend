@@ -9,14 +9,26 @@ public class FeedManager implements FeedListener {
 	private static final Logger log = LoggerFactory.getLogger(FeedManager.class);
 	private LinkedList<FeedFetcher> feedFetcherList = new LinkedList<FeedFetcher>();
 	private FeedStore feedStore;
-	private FeedStoreConfig feedStoreConfig;
+	private Config config = new Config();
 	
 	public FeedManager(){
 		setupFeedProviderList();
-		this.feedStoreConfig = new FeedStoreConfig();
-		this.feedStore = new FeedStore(this.feedStoreConfig);
+		this.feedStore = new FeedStore();
 	}
 
+	public void configure(Config config){
+		if(config != null){
+			this.config = config;
+			if(config.stores != null && config.stores.size() > 0){
+				feedStore.setConfig(config.stores.get(0));
+			}
+			else
+			{
+				log.error("configure cannot found store config");
+			}
+		}
+	}
+	
 	public boolean initialize(){
 		boolean authenticated = false;
 		try {
@@ -48,5 +60,13 @@ public class FeedManager implements FeedListener {
 	private void setupFeedProviderList(){
 		this.feedFetcherList.add(new FeedFetcher(FeedFactory.BITSTAMP_FEED, this));
 		this.feedFetcherList.add(new FeedFetcher(FeedFactory.MTGOX_FEED, this));
+	}
+
+	public void setConfig(Config config) {
+		this.config = config;
+	}
+
+	public Config getConfig() {
+		return config;
 	}
 }

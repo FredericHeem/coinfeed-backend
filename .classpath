@@ -9,6 +9,7 @@
   <classpathentry kind="var" path="M2_REPO/com/stateforge/statemachine/2.1/statemachine-2.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/4.8.1/junit-4.8.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-io/commons-io/1.1/commons-io-1.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.2.3/gson-2.2.3.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/googlecode/json-simple/json-simple/1.1/json-simple-1.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/ning/async-http-client/1.7.12/async-http-client-1.7.12.jar"/>
   <classpathentry kind="var" path="M2_REPO/io/netty/netty/3.6.3.Final/netty-3.6.3.Final.jar"/>

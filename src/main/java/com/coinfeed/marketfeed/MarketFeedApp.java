@@ -1,5 +1,6 @@
 package com.coinfeed.marketfeed;
 
+import java.io.FileNotFoundException;
 import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
@@ -10,23 +11,40 @@ public class MarketFeedApp {
 	
 	public static void main(String[] args) {
 		MarketFeedApp app = new MarketFeedApp();
-		app.run();
+		app.run(createConfig(args));
 	}
 
-	private void run() {
+	private void run(Config config) {
 		log.info("run");
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
 		try {
 			FeedManager feedManager = new FeedManager();
+			feedManager.configure(config);
+			
 			if(feedManager.initialize() == false){
 				log.error("feedManager.initialize ko");
 				return;
 			}
+			
 			feedManager.startFetch();
 			countDownLatch.await();
 		} catch (Exception exception) {
 			log.error(exception.getMessage());
 		}
+	}
+	
+	private static Config createConfig(String[] args){
+		Config config = null;
+		if(args.length > 0){
+			String configFile = args[0];
+			try {
+				config = ConfigReader.createFromFilename(configFile);
+			} catch (FileNotFoundException e) {
+				log.error("createConfig: " + e.getMessage());
+			}
+		}
+		
+		return config;
 	}
 }

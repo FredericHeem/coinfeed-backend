@@ -1,0 +1,24 @@
+{
+"name" : "prod",
+"feeds": [
+  {
+    "name" : "Bitstamp-BTC-USD",
+    "driver": "Bitstamp"
+  },
+  {
+    "name" : "MtGox-BTC-USD",
+    "driver": "MtGox"
+  }
+],
+"stores": [
+  {
+    "name": "default",
+    "driver": "mongodb-sync",
+    "hostname": "ds061797.mongolab.com",
+	"port": "61797",
+	"username": "coinfeed",
+	"password": "coinfeed1234",
+	"dbName": "bitcointickers"
+  }
+]
+}
