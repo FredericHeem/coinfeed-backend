@@ -1,13 +1,15 @@
 {
 "name" : "prod",
-"feeds": [
+"fetchers": [
   {
     "name" : "Bitstamp-BTC-USD",
-    "driver": "Bitstamp"
+    "driver": "Bitstamp",
+    "pollingPeriod": 20000
   },
   {
     "name" : "MtGox-BTC-USD",
     "driver": "MtGox"
+    "pollingPeriod": 20000
   }
 ],
 "stores": [

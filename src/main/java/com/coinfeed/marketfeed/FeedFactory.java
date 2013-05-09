@@ -8,15 +8,18 @@ public class FeedFactory {
 	public static final String BITSTAMP_FEED = "Bitstamp";
 	public static final String MTGOX_FEED = "MtGox";
 	
-	public static FeedBase createFeed(String type, FeedListener feedListener){
+	public static FeedFetcher createFeedPoller(String type, FeedListener feedListener, FeedFetcherConfig config){
 		FeedBase feed = null;
 		if(type.compareTo(BITSTAMP_FEED) == 0){
-			feed = new BitstampFeed(feedListener);
+			feed = new BitstampFeed(config);
 		} else if(type.compareTo(MTGOX_FEED) == 0){
-			feed = new MtGoxFeed(feedListener);
+			feed = new BitstampFeed(config);
 		} else {
-			log.error(type + " is not a known feed provider ");
+			log.error(type + " is not a known feed fetcher ");
+			return null;
 		}
-		return feed;
+		FeedFetcher feedFetcher = new FeedFetcher(feed, feedListener);
+		feed.setFeedListener(feedFetcher);
+		return feedFetcher;
 	}
 }

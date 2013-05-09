@@ -8,15 +8,13 @@ import com.stateforge.statemachine.listener.ObserverConsole;
 
 public class FeedFetcher  implements FeedListener {
 	private static final Logger log = LoggerFactory.getLogger(FeedFetcher.class);
-	private FeedBase feed;
 	private FeedFetcherContext context;
 	private FeedListener feedListener;
 	private int errorCount;
 	private int fetchCount;
 	
-	public FeedFetcher(String feedProvider, FeedListener feedListener){
+	public FeedFetcher(FeedBase feed, FeedListener feedListener){
 		this.feedListener = feedListener;
-		this.feed = FeedFactory.createFeed(feedProvider, this);
 		this.context = new FeedFetcherContext(feed);
 		this.context.setObserver(ObserverConsole.getInstance());
 	}

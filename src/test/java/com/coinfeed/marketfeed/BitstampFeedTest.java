@@ -24,8 +24,9 @@ public class BitstampFeedTest {
 	public void testFetch()
 	{
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
-		
-		BitstampFeed bitstampFeed = new BitstampFeed(new FeedListener() {
+		FeedFetcherConfig config = new FeedFetcherConfig();
+		BitstampFeed bitstampFeed = new BitstampFeed(config);
+		bitstampFeed.setFeedListener(new FeedListener() {
 			@Override
 			public void onError(String error) {
 				log.error("onError " + error);

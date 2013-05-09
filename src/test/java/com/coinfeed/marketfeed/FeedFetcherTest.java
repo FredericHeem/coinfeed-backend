@@ -4,6 +4,7 @@ package com.coinfeed.marketfeed;
 import static org.junit.Assert.fail;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import junit.framework.Assert;
 
@@ -16,10 +17,11 @@ import org.slf4j.LoggerFactory;
 public class FeedFetcherTest implements FeedListener {
 	private static final Logger log = LoggerFactory.getLogger(FeedFetcherTest.class);
 	private CountDownLatch countDownLatch;
-	
+	private FeedFetcherConfig config = new FeedFetcherConfig();
 	@Before
 	public void setUp() throws Exception {
 		countDownLatch = new CountDownLatch(2);
+		config.setPollingPeriod(5000);
 	}
 
 	@After
@@ -30,7 +32,9 @@ public class FeedFetcherTest implements FeedListener {
 	{
 		try {
 			feedFetcher.start();
-			countDownLatch.await();
+			if(countDownLatch.await(60, TimeUnit.SECONDS) == false){
+				fail("response was not received");
+			}
 		}
 		catch(Exception exception){
 			fail(exception.getMessage());
@@ -40,13 +44,13 @@ public class FeedFetcherTest implements FeedListener {
 	@Test
 	public void testFetchBitstamp()
 	{
-		testFetch(new FeedFetcher(FeedFactory.BITSTAMP_FEED, this));
+		testFetch(FeedFactory.createFeedPoller(FeedFactory.BITSTAMP_FEED, this, config));
 	}
 
 	@Test
 	public void testFetchMtGox()
 	{
-		testFetch(new FeedFetcher(FeedFactory.MTGOX_FEED, this));
+		testFetch(FeedFactory.createFeedPoller(FeedFactory.MTGOX_FEED, this, config));
 	}
 
 	@Override

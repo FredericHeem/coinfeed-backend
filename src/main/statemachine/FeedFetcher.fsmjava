@@ -33,7 +33,7 @@
             </state>
             <state name="Waiting">
                 <onEntry>
-                    <timerStart timer="TimerRetry" duration="feed.getPollingPeriod()"/>
+                    <timerStart timer="TimerRetry" duration="feed.getConfig().getPollingPeriod()"/>
                 </onEntry>
                 <transition event="evTimerRetry" nextState="Fetching"/>
             </state>

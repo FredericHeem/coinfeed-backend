@@ -31,6 +31,13 @@ public class ConfigReaderTest {
 			Config config = ConfigReader.createFromFilename("config.dev.json");
 			Assert.assertNotNull(config);
 			Assert.assertEquals(config.name, "dev");
+			//Fetcher
+			Assert.assertNotNull(config.fetchers);
+			Assert.assertEquals(config.fetchers.size(), 2);
+			FeedFetcherConfig fetcherConfigBitstamp = config.fetchers.get(0);
+			Assert.assertEquals(fetcherConfigBitstamp.getName(), "Bitstamp-BTC-USD");
+			Assert.assertEquals(fetcherConfigBitstamp.getPollingPeriod(), 5000);
+			//Stores
 			Assert.assertNotNull(config.stores);
 			FeedStoreConfig storeConfig = config.stores.get(0);
 			Assert.assertNotNull(storeConfig);

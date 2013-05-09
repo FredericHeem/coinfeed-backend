@@ -18,7 +18,15 @@ public abstract class FeedBase {
 	protected String query;
 	private String marketName;
 	private IFeedDecoder decoder;
-	private int pollingPeriod = 10000;
+	private FeedFetcherConfig config;
+	
+	public FeedBase(FeedFetcherConfig config){
+		if(config == null){
+			this.config = new FeedFetcherConfig();
+		} else {
+			this.config = config;
+		}
+	}
 	
 	public void fetch() {
 		fetch(query);		
@@ -68,18 +76,11 @@ public abstract class FeedBase {
 			getFeedListener().onError(e.getMessage());
 		}
 	}
-	
-	public FeedListener getFeedListener() {
-		return feedListener;
-	}
 
 	public AsyncHttpClient getAsyncHttpClient() {
 		return asyncHttpClient;
 	}
-	
-	protected FeedBase(FeedListener feedListener){
-		this.feedListener = feedListener;
-	}
+
 	public String getQuery() {
 		return query;
 	}
@@ -103,11 +104,19 @@ public abstract class FeedBase {
 		return decoder;
 	}
 
-	public void setPollingPeriod(int pollingPeriod) {
-		this.pollingPeriod = pollingPeriod;
+	public void setConfig(FeedFetcherConfig config) {
+		this.config = config;
 	}
 
-	public int getPollingPeriod() {
-		return pollingPeriod;
+	public FeedFetcherConfig getConfig() {
+		return config;
+	}
+
+	public FeedListener getFeedListener() {
+		return feedListener;
+	}
+
+	public void setFeedListener(FeedListener feedListener) {
+		this.feedListener = feedListener;
 	}
 }

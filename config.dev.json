@@ -1,9 +1,10 @@
 {
 "name" : "dev",
-"feeds": [
+"fetchers": [
   {
     "name" : "Bitstamp-BTC-USD",
-    "driver": "Bitstamp"
+    "driver": "Bitstamp",
+    "pollingPeriod": 5000
   },
   {
     "name" : "MtGox-BTC-USD",

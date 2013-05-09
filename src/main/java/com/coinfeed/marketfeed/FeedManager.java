@@ -12,7 +12,7 @@ public class FeedManager implements FeedListener {
 	private Config config = new Config();
 	
 	public FeedManager(){
-		setupFeedProviderList();
+		setupFeedFetcherList();
 		this.feedStore = new FeedStore();
 	}
 
@@ -57,9 +57,21 @@ public class FeedManager implements FeedListener {
 		log.error("onError: " + error);
 	}
 	
-	private void setupFeedProviderList(){
-		this.feedFetcherList.add(new FeedFetcher(FeedFactory.BITSTAMP_FEED, this));
-		this.feedFetcherList.add(new FeedFetcher(FeedFactory.MTGOX_FEED, this));
+	private void setupFeedFetcherList(){
+		if(getConfig().fetchers == null){
+			log.error("no feed fetcher configured");
+			return;
+		}
+		
+		for(FeedFetcherConfig config : getConfig().fetchers){
+			log.info("setupFeedFetcherList: " + config.getName());
+			FeedFetcher feedFetcher = FeedFactory.createFeedPoller(config.getName(), this, config);
+			if(feedFetcher != null){
+				this.feedFetcherList.add(feedFetcher);
+			} else {
+				log.error("setupFeedFetcherList: " + config.getName() + " is not a known feed fetcher");
+			}
+		}
 	}
 
 	public void setConfig(Config config) {
