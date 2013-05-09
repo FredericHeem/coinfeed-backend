@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.coinfeed.marketfeed.model.TickerModel;
-import com.coinfeed.marketfeed.statemachine.fetcher.FeedFetcherContext;
+import com.coinfeed.marketfeed.fetcher.statemachine.FeedFetcherContext;
 import com.stateforge.statemachine.listener.ObserverConsole;
 
 public class FeedPoller  implements FeedFetcherListener {
