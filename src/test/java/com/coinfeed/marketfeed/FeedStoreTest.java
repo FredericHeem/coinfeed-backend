@@ -71,7 +71,7 @@ public class FeedStoreTest {
 		FeedStore store = new FeedStore(config);
 		try {
 			Assert.assertTrue(store.authenticate());
-			TickerModel tickerModel = TickerModel.create("Bitstamp", "110", "111");
+			TickerModel tickerModel = TickerModel.create("Bitstamp-BTC-USD", "110", "111");
 			store.write(tickerModel);
 		} catch (Exception e) {
 			e.printStackTrace();
