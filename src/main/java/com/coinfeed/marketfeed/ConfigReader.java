@@ -1,8 +1,11 @@
 package com.coinfeed.marketfeed;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +15,10 @@ import com.google.gson.JsonSyntaxException;
 public class ConfigReader {
 	private static final Logger log = LoggerFactory.getLogger(ConfigReader.class);
 
-	public static Config createFromFilename(String fileName) throws FileNotFoundException{
+	public static Config createFromFilename(String fileName) throws FileNotFoundException, UnsupportedEncodingException{
 		log.debug("createFromFilename " + fileName);
-		return createBufferedReader(new BufferedReader(new FileReader(fileName)));
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(fileName), "UTF-8");
+		return createBufferedReader(new BufferedReader(isr));
 	}
 	
 	public static Config createBufferedReader(BufferedReader br){

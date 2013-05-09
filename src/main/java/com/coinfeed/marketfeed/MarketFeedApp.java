@@ -1,6 +1,7 @@
 package com.coinfeed.marketfeed;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.concurrent.CountDownLatch;
 
 import org.slf4j.Logger;
@@ -41,6 +42,8 @@ public class MarketFeedApp {
 			try {
 				config = ConfigReader.createFromFilename(configFile);
 			} catch (FileNotFoundException e) {
+				log.error("createConfig: " + e.getMessage());
+			} catch (UnsupportedEncodingException e) {
 				log.error("createConfig: " + e.getMessage());
 			}
 		}

@@ -4,6 +4,7 @@ package com.coinfeed.marketfeed;
 import static org.junit.Assert.fail;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import junit.framework.Assert;
 
@@ -37,6 +38,8 @@ public class ConfigReaderTest {
 			Assert.assertEquals(storeConfig.getDbName(), "bitcointickers-dev");
 		} catch (FileNotFoundException e) {
 			fail(e.getMessage());
+		} catch (UnsupportedEncodingException e) {
+			fail(e.getMessage());
 		}
 	}
 	
@@ -53,6 +56,8 @@ public class ConfigReaderTest {
 			Assert.assertEquals(storeConfig.getHostname(), "ds061797.mongolab.com");
 			Assert.assertEquals(storeConfig.getDbName(), "bitcointickers");
 		} catch (FileNotFoundException e) {
+			fail(e.getMessage());
+		} catch (UnsupportedEncodingException e) {
 			fail(e.getMessage());
 		}
 	}
