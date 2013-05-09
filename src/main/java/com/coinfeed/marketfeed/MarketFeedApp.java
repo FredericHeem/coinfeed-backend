@@ -45,7 +45,7 @@ public class MarketFeedApp {
 			} else {
 				if(countDownLatch.await(runDuration, TimeUnit.SECONDS)){
 					log.warn("run: interrupted");
-				};
+				}
 			}
 		} catch (Exception exception) {
 			log.error(exception.getMessage());
