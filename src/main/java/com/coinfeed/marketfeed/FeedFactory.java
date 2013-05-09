@@ -5,17 +5,19 @@ import org.slf4j.LoggerFactory;
 
 public class FeedFactory {
 	private static final Logger log = LoggerFactory.getLogger(FeedFactory.class);
-	public static final String BITSTAMP_FEED = "Bitstamp";
-	public static final String MTGOX_FEED = "MtGox";
 	
-	public static FeedFetcher createFeedPoller(String type, FeedListener feedListener, FeedFetcherConfig config){
+	public static FeedFetcher createFeedPoller(
+			String driver,
+			FeedListener feedListener,
+			FeedFetcherConfig config){
+		log.debug("createFeedPoller: " + driver);
 		FeedBase feed = null;
-		if(type.compareTo(BITSTAMP_FEED) == 0){
+		if(driver.compareTo(BitstampFeed.DRIVER_NAME) == 0){
 			feed = new BitstampFeed(config);
-		} else if(type.compareTo(MTGOX_FEED) == 0){
-			feed = new BitstampFeed(config);
+		} else if(driver.compareTo(MtGoxFeed.DRIVER_NAME) == 0){
+			feed = new MtGoxFeed(config);
 		} else {
-			log.error(type + " is not a known feed fetcher ");
+			log.error(driver + " is not a known feed fetcher ");
 			return null;
 		}
 		FeedFetcher feedFetcher = new FeedFetcher(feed, feedListener);

@@ -3,6 +3,7 @@ package com.coinfeed.marketfeed;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +13,20 @@ public class MarketFeedApp {
 	
 	public static void main(String[] args) {
 		MarketFeedApp app = new MarketFeedApp();
-		app.run(createConfig(args));
+		app.run(app.createConfig(args), -1);
 	}
 
-	private void run(Config config) {
+	/**
+	 * @param config
+	 * @param runDuration execute for the given seconds
+	 */
+	void run(Config config, int runDuration) {
 		log.info("run");
+		if(config == null){
+			log.error("no valid config");
+			return;
+		}
+		
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
 		try {
@@ -29,13 +39,18 @@ public class MarketFeedApp {
 			}
 			
 			feedManager.startFetch();
-			countDownLatch.await();
+			
+			if(runDuration <= 0){
+				countDownLatch.await();
+			} else {
+				countDownLatch.await(runDuration, TimeUnit.SECONDS);
+			}
 		} catch (Exception exception) {
 			log.error(exception.getMessage());
 		}
 	}
 	
-	private static Config createConfig(String[] args){
+	public Config createConfig(String[] args){
 		Config config = null;
 		if(args.length > 0){
 			String configFile = args[0];

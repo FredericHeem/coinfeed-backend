@@ -29,7 +29,7 @@ public class FeedManagerTest {
 	    final CountDownLatch countDownLatch = new CountDownLatch(2);
 		try {
 			feedManager.startFetch();
-			countDownLatch.await(20, TimeUnit.SECONDS);
+			countDownLatch.await(15, TimeUnit.SECONDS);
 		}
 		catch(Exception exception){
 			fail(exception.getMessage());

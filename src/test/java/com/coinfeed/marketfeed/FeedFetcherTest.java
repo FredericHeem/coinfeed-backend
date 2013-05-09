@@ -44,13 +44,13 @@ public class FeedFetcherTest implements FeedListener {
 	@Test
 	public void testFetchBitstamp()
 	{
-		testFetch(FeedFactory.createFeedPoller(FeedFactory.BITSTAMP_FEED, this, config));
+		testFetch(FeedFactory.createFeedPoller(BitstampFeed.DRIVER_NAME, this, config));
 	}
 
 	@Test
 	public void testFetchMtGox()
 	{
-		testFetch(FeedFactory.createFeedPoller(FeedFactory.MTGOX_FEED, this, config));
+		testFetch(FeedFactory.createFeedPoller(MtGoxFeed.DRIVER_NAME, this, config));
 	}
 
 	@Override

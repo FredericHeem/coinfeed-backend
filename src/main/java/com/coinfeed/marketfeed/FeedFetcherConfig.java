@@ -1,6 +1,7 @@
 package com.coinfeed.marketfeed;
 
 public class FeedFetcherConfig {
+	private String driver = "";
 	private String name = "";
 	private int pollingPeriod = 10000;
 
@@ -18,5 +19,13 @@ public class FeedFetcherConfig {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public String getDriver() {
+		return driver;
 	}
 }

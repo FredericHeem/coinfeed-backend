@@ -8,12 +8,10 @@ import org.slf4j.LoggerFactory;
 public class FeedManager implements FeedListener {
 	private static final Logger log = LoggerFactory.getLogger(FeedManager.class);
 	private LinkedList<FeedFetcher> feedFetcherList = new LinkedList<FeedFetcher>();
-	private FeedStore feedStore;
+	private FeedStore feedStore = new FeedStore();
 	private Config config = new Config();
 	
 	public FeedManager(){
-		setupFeedFetcherList();
-		this.feedStore = new FeedStore();
 	}
 
 	public void configure(Config config){
@@ -27,6 +25,8 @@ public class FeedManager implements FeedListener {
 				log.error("configure cannot found store config");
 			}
 		}
+		
+		setupFeedFetcherList();
 	}
 	
 	public boolean initialize(){
@@ -40,7 +40,7 @@ public class FeedManager implements FeedListener {
 	}
 	
 	public void startFetch(){
-		log.debug("startFetch");
+		log.debug("startFetch #fetchers " + feedFetcherList.size());
 		for(FeedFetcher feedFetcher : feedFetcherList){
 			feedFetcher.start();	
 		}
@@ -65,7 +65,7 @@ public class FeedManager implements FeedListener {
 		
 		for(FeedFetcherConfig config : getConfig().fetchers){
 			log.info("setupFeedFetcherList: " + config.getName());
-			FeedFetcher feedFetcher = FeedFactory.createFeedPoller(config.getName(), this, config);
+			FeedFetcher feedFetcher = FeedFactory.createFeedPoller(config.getDriver(), this, config);
 			if(feedFetcher != null){
 				this.feedFetcherList.add(feedFetcher);
 			} else {
