@@ -16,7 +16,6 @@ public abstract class FeedBase {
 	protected FeedListener feedListener;
 	protected Future<String> _future;
 	protected String query;
-	private String marketName;
 	private IFeedDecoder decoder;
 	private FeedFetcherConfig config;
 	
@@ -65,8 +64,8 @@ public abstract class FeedBase {
 		TickerModel tickerModel;
 		try {
 			tickerModel = getDecoder().decode(message);
-			log.debug("onFeedReceived: market name " + getMarketName());
-			tickerModel.setMarketName(getMarketName());
+			log.debug("onFeedReceived: market name " + getConfig().getName());
+			tickerModel.setMarketName(getConfig().getName());
 			getFeedListener().onFeedFetch(tickerModel);
 		} catch (DecoderException e) {
 			log.error("onFeedReceived: decoder error " + message);
@@ -86,14 +85,6 @@ public abstract class FeedBase {
 	}
 	public void setQuery(String query) {
 		this.query = query;
-	}
-
-	public void setMarketName(String marketName) {
-		this.marketName = marketName;
-	}
-
-	public String getMarketName() {
-		return marketName;
 	}
 
 	public void setDecoder(IFeedDecoder decoder) {
