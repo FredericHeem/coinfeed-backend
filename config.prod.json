@@ -8,7 +8,7 @@
   },
   {
     "name" : "MtGox-BTC-USD",
-    "driver": "MtGox"
+    "driver": "MtGox",
     "pollingPeriod": 20000
   }
 ],
