@@ -8,7 +8,7 @@ import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
 
 public class Config {
 	public String name;
-	public List<FeedPollerConfig> fetchers;
+	public List<FeedPollerConfig> fetchers = new LinkedList<FeedPollerConfig>();
 	public List<FeedStoreConfig> stores = new LinkedList<FeedStoreConfig>();
 	
 	public Config(){

@@ -12,14 +12,5 @@
   }
 ],
 "stores": [
-  {
-    "name": "MongoLab",
-    "driver": "mongodb",
-    "hostname": "ds059947.mongolab.com",
-	"port": "59947",
-	"username": "coinfeed",
-	"password": "coinfeed1234",
-	"dbName": "bitcointickers-dev"
-  }
 ]
 }

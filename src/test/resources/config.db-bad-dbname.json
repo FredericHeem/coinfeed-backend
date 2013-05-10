@@ -1,26 +1,25 @@
 {
-"name" : "prod",
+"name" : "dev",
 "fetchers": [
   {
     "name" : "Bitstamp-BTC-USD",
     "driver": "Bitstamp",
-    "pollingPeriod": 20000
+    "pollingPeriod": 5000
   },
   {
     "name" : "MtGox-BTC-USD",
-    "driver": "MtGox",
-    "pollingPeriod": 20000
+    "driver": "MtGox"
   }
 ],
 "stores": [
   {
     "name": "MongoLab",
     "driver": "mongodb",
-    "hostname": "ds061797.mongolab.com",
-	"port": "61797",
+    "hostname": "ds059947.mongolab.com",
+	"port": "59947",
 	"username": "coinfeed",
 	"password": "coinfeed1234",
-	"dbName": "bitcointickers"
+	"dbName": "notexist"
   }
 ]
 }

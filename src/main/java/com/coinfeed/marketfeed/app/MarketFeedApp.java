@@ -34,14 +34,9 @@ public class MarketFeedApp {
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		
 		try {
-			FeedManager feedManager = new FeedManager();
-			feedManager.configure(config);
-			
-			if(feedManager.initialize() == false){
-				log.error("feedManager.initialize ko");
-				return;
-			}
-			
+			FeedManager feedManager = new FeedManager(config);
+			feedManager.configure();
+			feedManager.initialize();
 			feedManager.startFetch();
 			
 			if(runDuration <= 0){

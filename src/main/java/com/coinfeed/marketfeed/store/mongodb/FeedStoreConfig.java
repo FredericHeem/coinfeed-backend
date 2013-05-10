@@ -1,6 +1,7 @@
 package com.coinfeed.marketfeed.store.mongodb;
 
 public class FeedStoreConfig {
+	private String driver;
 	private String hostname = "ds059947.mongolab.com";
 	private int port = 59947;
 	private String username = "coinfeed";
@@ -53,6 +54,14 @@ public class FeedStoreConfig {
 
 	public String getDbName() {
 		return dbName;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public String getDriver() {
+		return driver;
 	}
 
 }
