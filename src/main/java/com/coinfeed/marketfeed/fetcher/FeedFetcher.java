@@ -30,6 +30,10 @@ public abstract class FeedFetcher {
 		fetch(getConfig().getUrl());		
 	}
 	
+	public void stop() {
+		_future.cancel(true);		
+	}
+	
 	protected void fetch(String query) {
 		log.debug("fetch " + query);
 		try {

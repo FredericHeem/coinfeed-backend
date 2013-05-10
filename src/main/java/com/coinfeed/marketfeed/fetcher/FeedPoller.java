@@ -26,6 +26,10 @@ public class FeedPoller  implements FeedFetcherListener {
 		this.context.evStart();
 	}
 
+	public void stop() {
+		this.context.evStop();
+	}
+	
 	@Override
 	public void onFeedFetch(TickerModel tickerModel) {
 		this.fetchCount += 1;
@@ -63,4 +67,6 @@ public class FeedPoller  implements FeedFetcherListener {
 	public int getFetchCount() {
 		return fetchCount;
 	}
+
+
 }

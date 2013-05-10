@@ -101,6 +101,18 @@ public class FeedPollerTest implements FeedPollerListener {
 		testFetch404("https://data.mtgox.com/api/2/BTCUSD/money/tickerN");
 	}
 
+	@Test
+	public void testFetchAndStop()
+	{
+		try {
+			FeedPoller feedPoller = FeedPollerFactory.createFeedPoller(BitstampFeedFetcher.DRIVER_NAME, this, config);
+			feedPoller.start();
+			feedPoller.stop();
+		}
+		catch(Exception exception){
+			fail(exception.getMessage());
+		}
+	}
 	
 	@Override
 	public void onTicker(TickerModel tickerModel, boolean hasChanged) {

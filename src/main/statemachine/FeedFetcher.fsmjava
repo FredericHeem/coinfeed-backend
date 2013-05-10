@@ -23,6 +23,10 @@
             <transition event="evStart" nextState="Operating"/>
         </state>
         <state name="Operating">
+            <onExit>
+                <action>feed.stop()</action>
+            </onExit>
+            <transition event="evStop" nextState="End"/>
             <state name="Fetching">
                 <onEntry>
                     <action>feed.fetch()</action>
@@ -37,5 +41,6 @@
                 <transition event="evTimerRetry" nextState="Fetching"/>
             </state>
         </state>
+        <state name="End" kind="final"/>
     </state>
 </sm:StateMachine>
