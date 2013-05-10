@@ -13,7 +13,7 @@ import org.junit.Test;
 import com.coinfeed.marketfeed.config.Config;
 import com.coinfeed.marketfeed.config.ConfigReader;
 import com.coinfeed.marketfeed.fetcher.FeedPollerConfig;
-import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
+import com.coinfeed.marketfeed.store.FeedStoreConfig;
 
 public class ConfigReaderTest {
 

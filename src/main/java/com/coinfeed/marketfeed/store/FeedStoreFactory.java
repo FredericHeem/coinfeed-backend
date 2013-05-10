@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import com.coinfeed.marketfeed.fetcher.FeedPollerFactory;
 import com.coinfeed.marketfeed.store.mongodb.FeedStore;
-import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
 
 public class FeedStoreFactory {
 	private static final Logger log = LoggerFactory.getLogger(FeedPollerFactory.class);

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.coinfeed.marketfeed.model.TickerModel;
+import com.coinfeed.marketfeed.store.FeedStoreConfig;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;

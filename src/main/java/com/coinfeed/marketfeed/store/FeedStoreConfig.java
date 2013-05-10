@@ -1,4 +1,4 @@
-package com.coinfeed.marketfeed.store.mongodb;
+package com.coinfeed.marketfeed.store;
 
 public class FeedStoreConfig {
 	private String driver = "";

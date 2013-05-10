@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import com.coinfeed.marketfeed.model.TickerModel;
 import com.coinfeed.marketfeed.store.mongodb.FeedStore;
-import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
 
 public class FeedStoreTest {
 	private FeedStoreConfig config;

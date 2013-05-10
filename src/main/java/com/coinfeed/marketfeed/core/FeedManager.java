@@ -12,9 +12,9 @@ import com.coinfeed.marketfeed.fetcher.FeedPollerConfig;
 import com.coinfeed.marketfeed.fetcher.FeedPollerFactory;
 import com.coinfeed.marketfeed.fetcher.FeedPollerListener;
 import com.coinfeed.marketfeed.model.TickerModel;
+import com.coinfeed.marketfeed.store.FeedStoreConfig;
 import com.coinfeed.marketfeed.store.FeedStoreFactory;
 import com.coinfeed.marketfeed.store.mongodb.FeedStore;
-import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
 
 public class FeedManager implements FeedPollerListener {
 	private static final Logger log = LoggerFactory.getLogger(FeedManager.class);

@@ -1,7 +1,9 @@
-package com.coinfeed.marketfeed.store.mongodb;
+package com.coinfeed.marketfeed.store;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.coinfeed.marketfeed.store.FeedStoreConfig;
 
 public class FeedStoreConfigTest {
 
