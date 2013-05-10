@@ -75,7 +75,20 @@ public class FeedManagerTest {
 				FeedManagerException.DB_AUTHENTICATION);
 	}
 
+	@Test
+	public void testConfigFetcherBadDriver()
+	{
+		testConfigError("src/test/resources/config.fetcher-bad-driver.json",
+				FeedManagerException.CONFIGURATION);
+	}
 	
+	@Test
+	public void testConfigStoreBadDriver()
+	{
+		testConfigError("src/test/resources/config.store-bad-driver.json",
+				FeedManagerException.CONFIGURATION);
+	}
+
 	//@Test
 	public void testStartFetch() {
 	    final CountDownLatch countDownLatch = new CountDownLatch(2);
