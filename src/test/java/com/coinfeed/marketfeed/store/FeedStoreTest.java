@@ -32,6 +32,8 @@ public class FeedStoreTest {
 		store.setConfig(config);
 		try {
 			Assert.assertTrue(store.authenticate());
+			Assert.assertTrue(store.isAuthenticated());
+			store.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.assertTrue(false);
