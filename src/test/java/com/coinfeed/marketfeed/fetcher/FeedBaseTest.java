@@ -112,7 +112,6 @@ public class FeedBaseTest implements FeedFetcherListener {
 	@Override
 	public void onError(String error) {
 		log.error("onError " + error);
-		//countDownLatch.countDown(); 
 		Assert.assertTrue(false);
 	}
 

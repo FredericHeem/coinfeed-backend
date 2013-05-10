@@ -18,7 +18,7 @@ import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
 public class ConfigReaderTest {
 
 	private static final String configContent = "{\"name\" : \"dev\",\"feeds\": [{}],\"stores\": [{\"name\": \"default\",\"dbName\": \"bitcointickers-dev\"}]}";
-
+	private static final String jsonKO = "asasa";
 	@Test
 	public void testConfigParse(){
 		Config config = ConfigReader.createFromString(configContent);
@@ -72,5 +72,17 @@ public class ConfigReaderTest {
 		} catch (UnsupportedEncodingException e) {
 			fail(e.getMessage());
 		}
+	}
+	
+	@Test
+	public void testConfigKO(){
+		Config config = ConfigReader.createFromString(jsonKO);
+		Assert.assertNull(config);
+	}
+
+	@Test
+	public void testConfigFromFileNameKO(){
+		Config config = ConfigReader.createFromString("src/test/resources/config.ko.json");
+		Assert.assertNull(config);
 	}
 }

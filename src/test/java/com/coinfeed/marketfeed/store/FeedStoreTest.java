@@ -20,17 +20,6 @@ public class FeedStoreTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	@Test
-	public void testURI(){
-		config.setHostname("ds059947.mongolab.com");
-		config.setDbName("bitcointickers-dev");
-		config.setPort(59947);
-		config.setUsername("coinfeed");
-		config.setPassword("coinfeed1234");
-		Assert.assertEquals(config.toString(),
-				"coinfeed:coinfeed1234@ds059947.mongolab.com:59947/bitcointickers-dev");
-	}
 		
 	@Test
 	public void testAuthenticate(){
