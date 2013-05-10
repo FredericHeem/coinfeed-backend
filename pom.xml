@@ -93,7 +93,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>com.coinfeed.marketfeed.MarketFeedApp</mainClass>
+                            <mainClass>com.coinfeed.marketfeed.app.MarketFeedApp</mainClass>
                             <name>worker</name>
                         </program>
                     </programs>
