@@ -7,14 +7,13 @@
     <events>
         <eventSource name="External">
             <event id="evStart"/>
-            <event id="evCancel"/>
+            <event id="evStop"/>
         </eventSource>
         <eventSource name="Internal">
             <event id="evError"/>
             <event id="evFetched"/>
         </eventSource>
         <eventSource name="Timers">
-            <timer id="evMaxDuration" name="maxDuration"/>
             <timer id="evTimerRetry" name="TimerRetry"/>
         </eventSource>
     </events>

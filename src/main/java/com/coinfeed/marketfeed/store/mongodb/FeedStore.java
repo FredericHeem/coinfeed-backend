@@ -20,9 +20,6 @@ public class FeedStore {
 	private DB db;
 	private boolean authenticated;
 	
-	public FeedStore(){
-	}
-	
 	public FeedStore(FeedStoreConfig config){
 		super();
 		this.config = config;
