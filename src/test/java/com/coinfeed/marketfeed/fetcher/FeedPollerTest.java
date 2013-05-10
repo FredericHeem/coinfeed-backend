@@ -61,6 +61,47 @@ public class FeedPollerTest implements FeedPollerListener {
 		testFetch(FeedPollerFactory.createFeedPoller(MtGoxFeedFetcher.DRIVER_NAME, this, config));
 	}
 
+	public void testFetch404(String url404){
+		countDownLatch = new CountDownLatch(1);
+		config.setUrl(url404);
+		FeedPoller feedPoller = FeedPollerFactory.createFeedPoller(
+				BitstampFeedFetcher.DRIVER_NAME, 
+				new FeedPollerListener() {
+			
+			@Override
+			public void onTicker(TickerModel tickerModel, boolean hasChanged) {
+				fail("KO");
+			}
+			
+			@Override
+			public void onError(String error) {
+				log.error("onError");
+				countDownLatch.countDown();
+			}
+		}, config);
+		try {
+			feedPoller.start();
+			if(countDownLatch.await(60, TimeUnit.SECONDS) == false){
+				fail("response was not received");
+			}
+		}
+		catch(Exception exception){
+			fail(exception.getMessage());
+		}
+	}
+	@Test
+	public void testFetchBitstamp404()
+	{
+		testFetch404("https://www.bitstamp.net/api/tickerN");
+	}
+
+	@Test
+	public void testFetchMtGox404()
+	{
+		testFetch404("https://data.mtgox.com/api/2/BTCUSD/money/tickerN");
+	}
+
+	
 	@Override
 	public void onTicker(TickerModel tickerModel, boolean hasChanged) {
 		log.debug("onFeedFetch " + tickerModel.toString());

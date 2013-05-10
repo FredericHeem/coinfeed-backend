@@ -89,11 +89,28 @@ public class FeedManagerTest {
 				FeedManagerException.CONFIGURATION);
 	}
 
-	//@Test
+	@Test
 	public void testStartFetch() {
 	    final CountDownLatch countDownLatch = new CountDownLatch(2);
 		try {
 			Config config = ConfigReader.createFromFilename("config.dev.json");
+			Assert.assertNotNull(config);
+			feedManager = new FeedManager(config);
+			feedManager.configure();
+			feedManager.initialize();
+			feedManager.startFetch();
+			countDownLatch.await(15, TimeUnit.SECONDS);
+		}
+		catch(Exception exception){
+			fail(exception.getMessage());
+		}
+	}
+
+	@Test
+	public void testStartFetch404() {
+	    final CountDownLatch countDownLatch = new CountDownLatch(2);
+		try {
+			Config config = ConfigReader.createFromFilename("src/test/resources/config.fetcher-bad-url.json");
 			Assert.assertNotNull(config);
 			feedManager = new FeedManager(config);
 			feedManager.configure();

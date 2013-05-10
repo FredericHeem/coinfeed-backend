@@ -1,0 +1,22 @@
+{
+"name" : "dev",
+"fetchers": [
+  {
+    "name" : "Bitstamp-BTC-USD",
+    "driver": "Bitstamp",
+    "pollingPeriod": 5000,
+	"url" : "https://www.bitstamp.net/api/tickera"
+  }
+],
+"stores": [
+  {
+    "name": "MongoLab",
+    "driver": "mongodb",
+    "hostname": "ds059947.mongolab.com",
+	"port": "59947",
+	"username": "coinfeed",
+	"password": "coinfeed1234",
+	"dbName": "bitcointickers-dev"
+  }
+]
+}

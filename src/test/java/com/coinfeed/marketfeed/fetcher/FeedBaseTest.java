@@ -35,11 +35,7 @@ public class FeedBaseTest implements FeedFetcherListener {
 	@After
 	public void tearDown() throws Exception {
 		log.debug("tearDown");
-		Assert.assertNotNull(_tickerModel);
-		Assert.assertNotNull(_tickerModel.getBid());
-		Assert.assertNotNull(_tickerModel.getAsk());
-		Assert.assertNotNull(_tickerModel.getMarketName());
-		log.debug(_tickerModel.toString());
+		
 	}
 
 	public void testFetch(FeedFetcher feed)
@@ -47,6 +43,44 @@ public class FeedBaseTest implements FeedFetcherListener {
 		try {
 			feed.setFeedListener(this);
 			feed.fetch();
+			if(countDownLatch.await(60, TimeUnit.SECONDS) == false){
+				fail("response was not received");
+			}
+		}
+		catch(Exception exception){
+			fail(exception.getMessage());
+		}
+		
+		Assert.assertNotNull(_tickerModel);
+		Assert.assertNotNull(_tickerModel.getBid());
+		Assert.assertNotNull(_tickerModel.getAsk());
+		Assert.assertNotNull(_tickerModel.getMarketName());
+		log.debug(_tickerModel.toString());
+	}
+	
+	@Test
+	public void testFetchBitstamp404()
+	{
+		config.setUrl("https://www.bitstamp.net/api/tickerN");
+		
+		try {
+			FeedFetcher feed = new BitstampFeedFetcher(config);
+			feed.setFeedListener(new FeedFetcherListener() {
+				
+				@Override
+				public void onFeedFetch(TickerModel tickerModel) {
+					fail("should be here");
+				}
+				
+				@Override
+				public void onError(String error) {
+					log.error("onError " + error);
+					countDownLatch.countDown(); 
+				}
+			});
+			
+			feed.fetch();
+			
 			if(countDownLatch.await(60, TimeUnit.SECONDS) == false){
 				fail("response was not received");
 			}
@@ -78,7 +112,7 @@ public class FeedBaseTest implements FeedFetcherListener {
 	@Override
 	public void onError(String error) {
 		log.error("onError " + error);
-		countDownLatch.countDown(); 
+		//countDownLatch.countDown(); 
 		Assert.assertTrue(false);
 	}
 

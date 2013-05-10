@@ -3,6 +3,7 @@ package com.coinfeed.marketfeed.fetcher;
 public class FeedPollerConfig {
 	private String driver = "";
 	private String name = "";
+	private String url = "";
 	private int pollingPeriod = 10000;
 
 	public void setPollingPeriod(int pollingPeriod) {
@@ -27,5 +28,13 @@ public class FeedPollerConfig {
 
 	public String getDriver() {
 		return driver;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getUrl() {
+		return url;
 	}
 }

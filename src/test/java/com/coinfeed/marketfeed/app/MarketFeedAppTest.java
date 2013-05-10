@@ -22,4 +22,11 @@ public class MarketFeedAppTest {
 		args[0] = "configdoesnnot exist.dev.json";
 		MarketFeedApp.main(args);
 	}
+	
+	@Test
+	public void runNoConfig()
+	{
+		String[] args =  new String[0];
+		MarketFeedApp.main(args);
+	}
 }

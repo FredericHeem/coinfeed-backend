@@ -10,10 +10,11 @@ import com.coinfeed.marketfeed.store.mongodb.FeedStore;
 import com.coinfeed.marketfeed.store.mongodb.FeedStoreConfig;
 
 public class FeedStoreTest {
-	private FeedStoreConfig config = new FeedStoreConfig();
+	private FeedStoreConfig config;
 	
 	@Before
 	public void setUp() throws Exception {
+		config = new FeedStoreConfig();
 	}
 
 	@After
@@ -22,6 +23,11 @@ public class FeedStoreTest {
 
 	@Test
 	public void testURI(){
+		config.setHostname("ds059947.mongolab.com");
+		config.setDbName("bitcointickers-dev");
+		config.setPort(59947);
+		config.setUsername("coinfeed");
+		config.setPassword("coinfeed1234");
 		Assert.assertEquals(config.toString(),
 				"coinfeed:coinfeed1234@ds059947.mongolab.com:59947/bitcointickers-dev");
 	}
@@ -40,7 +46,7 @@ public class FeedStoreTest {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void testAuthenticateKOHostname(){
 		config.setHostname("noexisting.com");
 		FeedStore store = new FeedStore(config);
@@ -61,7 +67,7 @@ public class FeedStoreTest {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void testAuthenticateKOPort(){
 		config.setPort(12345);
 		FeedStore store = new FeedStore(config);

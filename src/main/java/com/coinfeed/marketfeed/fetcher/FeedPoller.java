@@ -19,6 +19,7 @@ public class FeedPoller  implements FeedFetcherListener {
 		this.feedPollerListener = feedPollerListener;
 		this.context = new FeedFetcherContext(feed);
 		this.context.setObserver(ObserverConsole.getInstance());
+		this.context.enterInitialState();
 	}
 	
 	public void start(){
@@ -50,21 +51,13 @@ public class FeedPoller  implements FeedFetcherListener {
 	@Override
 	public void onError(String error) {
 		this.errorCount += 1;
-		log.warn("#error " + getFetchCount());
+		log.warn("#error " + getErrorCount());
 		this.context.evError();
 		this.feedPollerListener.onError(error);
 	}
 
 	public int getErrorCount() {
 		return errorCount;
-	}
-
-	public void setErrorCount(int errorCount) {
-		this.errorCount = errorCount;
-	}
-
-	public void setFetchCount(int fetchCount) {
-		this.fetchCount = fetchCount;
 	}
 
 	public int getFetchCount() {

@@ -16,20 +16,18 @@ public abstract class FeedFetcher {
 	protected AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
 	protected FeedFetcherListener feedListener;
 	protected Future<String> _future;
-	protected String query;
 	private IFeedDecoder decoder;
 	private FeedPollerConfig config;
 	
-	public FeedFetcher(FeedPollerConfig config){
-		if(config == null){
-			this.config = new FeedPollerConfig();
-		} else {
-			this.config = config;
+	public FeedFetcher(FeedPollerConfig config, String urlDefault){
+		this.config = config;
+		if(config.getUrl().isEmpty()){
+			config.setUrl(urlDefault);
 		}
 	}
 	
 	public void fetch() {
-		fetch(query);		
+		fetch(getConfig().getUrl());		
 	}
 	
 	protected void fetch(String query) {
@@ -79,13 +77,6 @@ public abstract class FeedFetcher {
 
 	public AsyncHttpClient getAsyncHttpClient() {
 		return asyncHttpClient;
-	}
-
-	public String getQuery() {
-		return query;
-	}
-	public void setQuery(String query) {
-		this.query = query;
 	}
 
 	public void setDecoder(IFeedDecoder decoder) {
