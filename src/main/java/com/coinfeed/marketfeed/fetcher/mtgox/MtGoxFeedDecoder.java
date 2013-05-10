@@ -6,12 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.coinfeed.marketfeed.fetcher.DecoderException;
-import com.coinfeed.marketfeed.fetcher.FeedBaseTest;
 import com.coinfeed.marketfeed.fetcher.IFeedDecoder;
 import com.coinfeed.marketfeed.model.TickerModel;
 
 public class MtGoxFeedDecoder implements IFeedDecoder {
-	private static final Logger log = LoggerFactory.getLogger(FeedBaseTest.class);
+	private static final Logger log = LoggerFactory.getLogger(MtGoxFeedDecoder.class);
 
 	public TickerModel decode(String message) throws DecoderException {
 		TickerModel tickerModel = new TickerModel();
