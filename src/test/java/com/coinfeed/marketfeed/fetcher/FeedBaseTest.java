@@ -18,6 +18,7 @@ import com.coinfeed.marketfeed.fetcher.FeedFetcher;
 import com.coinfeed.marketfeed.fetcher.FeedFetcherListener;
 import com.coinfeed.marketfeed.fetcher.FeedPollerConfig;
 import com.coinfeed.marketfeed.fetcher.bitstamp.BitstampFeedFetcher;
+import com.coinfeed.marketfeed.fetcher.btce.BtceFeedFetcher;
 import com.coinfeed.marketfeed.fetcher.mtgox.MtGoxFeedFetcher;
 import com.coinfeed.marketfeed.model.TickerModel;
 
@@ -61,10 +62,26 @@ public class FeedBaseTest implements FeedFetcherListener {
 	@Test
 	public void testFetchBitstamp404()
 	{
-		config.setUrl("https://www.bitstamp.net/api/tickerN");
+		testFetch404(new BitstampFeedFetcher(config), "https://www.bitstamp.net/api/tickerN");
+	}
+	
+	@Test
+	public void testFetchBtce404()
+	{
+		testFetch404(new BtceFeedFetcher(config), "https://btc-e.com/api/2/btc_usd/tickerq");
+	}
+	
+	@Test
+	public void testFetchMtGox404()
+	{
+		testFetch404(new MtGoxFeedFetcher(config), "https://data.mtgox.com/api/2/BTCUSD/money/ticker");
+	}
+	
+	public void testFetch404(FeedFetcher feed, String url)
+	{
+		config.setUrl(url);
 		
 		try {
-			FeedFetcher feed = new BitstampFeedFetcher(config);
 			feed.setFeedListener(new FeedFetcherListener() {
 				
 				@Override
@@ -89,7 +106,6 @@ public class FeedBaseTest implements FeedFetcherListener {
 			fail(exception.getMessage());
 		}
 	}
-	
 	@Test
 	public void testFetchBitstamp()
 	{
@@ -102,6 +118,12 @@ public class FeedBaseTest implements FeedFetcherListener {
 		testFetch(new MtGoxFeedFetcher(config));
 	}
 
+	@Test
+	public void testFetchBtce()
+	{
+		testFetch(new BtceFeedFetcher(config));
+	}
+	
 	@Override
 	public void onFeedFetch(TickerModel tickerModel) {
 		log.debug("onFeedFetch " + tickerModel.toString());

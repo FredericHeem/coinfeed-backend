@@ -10,7 +10,12 @@
     "name" : "MtGox-BTC-USD",
     "driver": "MtGox",
     "pollingPeriod": 20000
+  },
+  {
+    "name" : "Btce-BTC-USD",
+    "driver": "Btce"
   }
+  
 ],
 "stores": [
   {

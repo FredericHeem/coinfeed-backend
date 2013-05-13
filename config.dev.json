@@ -9,7 +9,12 @@
   {
     "name" : "MtGox-BTC-USD",
     "driver": "MtGox"
+  },
+  {
+    "name" : "Btce-BTC-USD",
+    "driver": "Btce"
   }
+  
 ],
 "stores": [
   {
