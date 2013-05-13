@@ -45,9 +45,9 @@ public class FeedPoller  implements FeedFetcherListener {
 				this.tickerModelLast.getBid().compareTo(tickerModel.getBid()) == 0 &&
 				this.tickerModelLast.getAsk().compareTo(tickerModel.getAsk()) == 0){
 				log.debug("onFeedFetch same ticker");
-		} else {
-			hasChanged = false;
+				hasChanged = false;
 		}
+		
 		this.feedPollerListener.onTicker(tickerModel, hasChanged);
 		this.tickerModelLast = tickerModel;
 	}
