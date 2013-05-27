@@ -38,7 +38,7 @@ public class ConfigReaderTest {
 			Assert.assertEquals(config.name, "dev");
 			//Fetcher
 			Assert.assertNotNull(config.fetchers);
-			Assert.assertEquals(config.fetchers.size(), 3);
+			Assert.assertEquals(config.fetchers.size(), 4);
 			FeedPollerConfig fetcherConfigBitstamp = config.fetchers.get(0);
 			Assert.assertEquals(fetcherConfigBitstamp.getName(), "Bitstamp-BTC-USD");
 			Assert.assertEquals(fetcherConfigBitstamp.getPollingPeriod(), 5000);
@@ -49,6 +49,8 @@ public class ConfigReaderTest {
 			FeedPollerConfig fetcherConfigBtce = config.fetchers.get(2);
 			Assert.assertEquals(fetcherConfigBtce.getName(), "Btce-BTC-USD");
 			
+			FeedPollerConfig fetcherConfigBitfinex = config.fetchers.get(3);
+			Assert.assertEquals(fetcherConfigBitfinex.getName(), "Bitfinex-BTC-USD");
 			//Stores
 			Assert.assertNotNull(config.stores);
 			FeedStoreConfig storeConfig = config.stores.get(0);

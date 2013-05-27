@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.coinfeed.marketfeed.fetcher.FeedFetcher;
 import com.coinfeed.marketfeed.fetcher.FeedFetcherListener;
 import com.coinfeed.marketfeed.fetcher.FeedPollerConfig;
+import com.coinfeed.marketfeed.fetcher.bitfinex.BitfinexFeedFetcher;
 import com.coinfeed.marketfeed.fetcher.bitstamp.BitstampFeedFetcher;
 import com.coinfeed.marketfeed.fetcher.btce.BtceFeedFetcher;
 import com.coinfeed.marketfeed.fetcher.mtgox.MtGoxFeedFetcher;
@@ -76,6 +77,13 @@ public class FeedBaseTest implements FeedFetcherListener {
 	{
 		testFetch404(new MtGoxFeedFetcher(config), "https://data.mtgox.com/api/2/BTCUSD/money/ticker");
 	}
+
+	@Test
+	public void testFetchBitfinex404()
+	{
+		testFetch404(new BitfinexFeedFetcher(config), "https://bitfinex.com/api/v1/ticker/btcusd1");
+	}
+
 	
 	public void testFetch404(FeedFetcher feed, String url)
 	{
@@ -122,6 +130,12 @@ public class FeedBaseTest implements FeedFetcherListener {
 	public void testFetchBtce()
 	{
 		testFetch(new BtceFeedFetcher(config));
+	}
+	
+	@Test
+	public void testFetctBitfinex()
+	{
+		testFetch(new BitfinexFeedFetcher(config));
 	}
 	
 	@Override
