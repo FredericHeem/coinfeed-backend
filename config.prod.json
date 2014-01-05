@@ -18,6 +18,10 @@
   {
     "name" : "Bitfinex-BTC-USD",
     "driver": "Bitfinex"
+  },
+  {
+      "name" : "Justcoin-BTC-USD",
+      "driver": "Justcoin"
   }
 ],
 "stores": [
