@@ -14,7 +14,7 @@ See [coinfeed](https://github.com/FredericHeem/coinfeed) for the web frontend.
 
 **coinfeed-backend** is built with maven, developed with eclipse, tested with junit, statically analyzed, code covered, and continuously integrated: [![Build Status](https://travis-ci.org/FredericHeem/coinfeed-backend.png)](https://travis-ci.org/FredericHeem/coinfeed-backend)
 
-The state machine code generator [StateForge](http://www.stateforge.com) is used to implement this backend. By the way, I'm the author of these state machine tools, developer needs to eat their own dog food. 
+The state machine code generator [StateForge](http://www.stateforge.com) is used to implement this backend. By the way, I'm the author of these state machine tools, developers need to eat their own dog food. 
 
 Mongodb is used to store the data.
 
