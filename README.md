@@ -7,8 +7,8 @@ See [coinfeed](https://github.com/FredericHeem/coinfeed) for the web frontend.
 ### Get source and build it
 
     git clone git@github.com:FredericHeem/coinfeed-backend.git
-	cd coinfeed-backend
-	mvn install	
+    cd coinfeed-backend
+    mvn install	
 
 ## Development
 

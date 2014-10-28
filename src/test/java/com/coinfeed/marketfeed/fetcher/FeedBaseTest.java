@@ -72,11 +72,6 @@ public class FeedBaseTest implements FeedFetcherListener {
 		testFetch404(new BtceFeedFetcher(config), "https://btc-e.com/api/2/btc_usd/tickerq");
 	}
 	
-	@Test
-	public void testFetchMtGox404()
-	{
-		testFetch404(new MtGoxFeedFetcher(config), "https://data.mtgox.com/api/2/BTCUSD/money/ticker");
-	}
 
 	@Test
 	public void testFetchBitfinex404()
@@ -118,12 +113,6 @@ public class FeedBaseTest implements FeedFetcherListener {
 	public void testFetchBitstamp()
 	{
 		testFetch(new BitstampFeedFetcher(config));
-	}
-
-	@Test
-	public void testFetchMtGox()
-	{
-		testFetch(new MtGoxFeedFetcher(config));
 	}
 
 	@Test

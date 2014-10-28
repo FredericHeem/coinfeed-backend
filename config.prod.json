@@ -7,11 +7,6 @@
     "pollingPeriod": 20000
   },
   {
-    "name" : "MtGox-BTC-USD",
-    "driver": "MtGox",
-    "pollingPeriod": 20000
-  },
-  {
     "name" : "Btce-BTC-USD",
     "driver": "Btce"
   },
@@ -20,7 +15,7 @@
     "driver": "Bitfinex"
   },
   {
-      "name" : "Justcoin-BTC-USD",
+      "name" : "Airbex-BTC-USD",
       "driver": "Justcoin"
   }
 ],

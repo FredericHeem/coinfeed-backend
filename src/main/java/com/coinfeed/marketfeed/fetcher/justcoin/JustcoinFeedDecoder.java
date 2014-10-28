@@ -15,7 +15,7 @@ public class JustcoinFeedDecoder implements IFeedDecoder {
 		Object obj = JSONValue.parse(message);
 		JSONArray jsonMessage = (JSONArray) obj;
 		
-		for (int i = 0; i < jsonMessage.size(); i++) {  // **line 2**
+		for (int i = 0; i < jsonMessage.size(); i++) {
 			JSONObject childJSONObject = (JSONObject)jsonMessage.get(i);
 			String market = (String)childJSONObject.get("id");
 			if(market.compareTo("BTCUSD") == 0){

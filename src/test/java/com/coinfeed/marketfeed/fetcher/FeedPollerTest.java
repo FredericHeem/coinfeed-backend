@@ -55,12 +55,6 @@ public class FeedPollerTest implements FeedPollerListener {
 		testFetch(FeedPollerFactory.createFeedPoller(BitstampFeedFetcher.DRIVER_NAME, this, config));
 	}
 
-	@Test
-	public void testFetchMtGox()
-	{
-		testFetch(FeedPollerFactory.createFeedPoller(MtGoxFeedFetcher.DRIVER_NAME, this, config));
-	}
-
 	public void testFetch404(String url404){
 		countDownLatch = new CountDownLatch(1);
 		config.setUrl(url404);
@@ -93,12 +87,6 @@ public class FeedPollerTest implements FeedPollerListener {
 	public void testFetchBitstamp404()
 	{
 		testFetch404("https://www.bitstamp.net/api/tickerN");
-	}
-
-	@Test
-	public void testFetchMtGox404()
-	{
-		testFetch404("https://data.mtgox.com/api/2/BTCUSD/money/tickerN");
 	}
 
 	@Test

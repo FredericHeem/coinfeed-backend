@@ -38,22 +38,19 @@ public class ConfigReaderTest {
 			Assert.assertEquals(config.name, "dev");
 			//Fetcher
 			Assert.assertNotNull(config.fetchers);
-			Assert.assertEquals(config.fetchers.size(), 5);
+			Assert.assertEquals(config.fetchers.size(), 4);
 			FeedPollerConfig fetcherConfigBitstamp = config.fetchers.get(0);
 			Assert.assertEquals(fetcherConfigBitstamp.getName(), "Bitstamp-BTC-USD");
 			Assert.assertEquals(fetcherConfigBitstamp.getPollingPeriod(), 5000);
 			
-			FeedPollerConfig fetcherConfigMtGox = config.fetchers.get(1);
-			Assert.assertEquals(fetcherConfigMtGox.getName(), "MtGox-BTC-USD");
-			
-			FeedPollerConfig fetcherConfigBtce = config.fetchers.get(2);
+			FeedPollerConfig fetcherConfigBtce = config.fetchers.get(1);
 			Assert.assertEquals(fetcherConfigBtce.getName(), "Btce-BTC-USD");
 			
-			FeedPollerConfig fetcherConfigBitfinex = config.fetchers.get(3);
+			FeedPollerConfig fetcherConfigBitfinex = config.fetchers.get(2);
 			Assert.assertEquals(fetcherConfigBitfinex.getName(), "Bitfinex-BTC-USD");
 			
-			FeedPollerConfig fetcherConfigJustcoin = config.fetchers.get(4);
-			Assert.assertEquals(fetcherConfigJustcoin.getName(), "Justcoin-BTC-USD");
+			FeedPollerConfig fetcherConfigJustcoin = config.fetchers.get(3);
+			Assert.assertEquals(fetcherConfigJustcoin.getName(), "Airbex-BTC-USD");
 			
 			//Stores
 			Assert.assertNotNull(config.stores);
